@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="32" fill="#1f2b2d"/>
+  <circle cx="64" cy="64" r="34" fill="#7bc5c2"/>
+  <path d="M55 32h18v12H55z" fill="#d9d2c0"/>
+  <path d="M50 42h28c3 0 6 3 6 7v31c0 12-9 18-20 18s-20-6-20-18V49c0-4 3-7 6-7Z" fill="#5da3a4"/>
+  <rect x="54" y="57" width="20" height="16" rx="5" fill="#f8f4ec" transform="rotate(-8 64 65)"/>
+  <text x="64" y="69" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#1f2b2d">T&amp;D</text>
+</svg>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f8f4ec" />
+  <meta name="description" content="A fun private Truth & Dare room for friends." />
+  <title>Truth & Dare — Friends Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><span>↺</span></div>
+        <div>
+          <div class="brand-name">Truth & Dare</div>
+          <div class="brand-sub">Friends Edition</div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" id="shareBtn" aria-label="Share room" title="Share room">↗</button>
+        <button class="icon-btn" id="copyBtn" aria-label="Copy room link" title="Copy room link">⧉</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-card" id="lobbyView">
+        <div class="eyebrow">PRIVATE • PLAY TOGETHER</div>
+        <h1>Pass the bottle.<br><span>Keep it playful.</span></h1>
+        <p class="hero-copy">Spin one shared bottle, pick Truth or Dare, and see the same moment on every friend’s phone.</p>
+
+        <div class="join-grid">
+          <label class="field">
+            <span>Your name</span>
+            <input id="nameInput" autocomplete="nickname" maxlength="24" placeholder="e.g. Abhi" />
+          </label>
+          <label class="field">
+            <span>Room code</span>
+            <input id="roomInput" autocapitalize="characters" maxlength="8" placeholder="AB12CD" />
+          </label>
+        </div>
+        <button class="primary-btn wide" id="joinBtn">Enter the room <span>→</span></button>
+        <div class="hint-row"><span class="dot"></span><span>Friends-only room · up to 8 players</span></div>
+        <div class="error-text" id="lobbyError" role="alert"></div>
+      </section>
+
+      <section class="game-view hidden" id="gameView">
+        <div class="room-strip">
+          <div>
+            <div class="mini-label">ROOM</div>
+            <div class="room-code" id="roomCodeLabel">—</div>
+          </div>
+          <button class="pill-btn" id="inviteBtn">Invite friends <span>↗</span></button>
+        </div>
+
+        <div class="players-card">
+          <div class="section-title-row">
+            <div>
+              <div class="mini-label">PLAYERS</div>
+              <div class="players-title"><span id="onlineCount">0</span> playing now</div>
+            </div>
+            <span class="live-badge"><i></i> LIVE</span>
+          </div>
+          <div class="players-row" id="playersRow"></div>
+        </div>
+
+        <section class="play-stage">
+          <div class="turn-copy">
+            <div class="mini-label" id="turnLabel">YOUR TURN?</div>
+            <h2 id="turnHeading">Spin the bottle.</h2>
+            <p id="turnSubheading">Each player gets one fair turn before the circle reshuffles.</p>
+          </div>
+
+          <div class="bottle-zone">
+            <div class="spark spark-a"></div>
+            <div class="spark spark-b"></div>
+            <div class="bottle-shadow"></div>
+            <button class="bottle-btn" id="spinBtn" aria-label="Spin the bottle">
+              <div class="bottle-wrap" id="bottleWrap">
+                <div class="bottle-neck"></div>
+                <div class="bottle-body">
+                  <div class="bottle-gloss"></div>
+                  <div class="bottle-label">T&D</div>
+                </div>
+                <div class="bottle-cap"></div>
+              </div>
+            </button>
+            <div class="spin-tip"><span class="tap-dot"></span> Tap to spin</div>
+          </div>
+
+          <div class="status-card" id="statusCard">
+            <div class="status-icon">✦</div>
+            <div>
+              <strong id="statusTitle">Ready when you are</strong>
+              <span id="statusText">The bottle chooses the next player fairly.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="chat-card">
+          <div class="chat-header">
+            <div>
+              <div class="mini-label">FRIEND CHAT</div>
+              <div class="chat-title">Talk while you play</div>
+            </div>
+            <div class="save-pill">Saved</div>
+          </div>
+          <div class="chat-list" id="chatList"></div>
+          <form class="chat-form" id="chatForm">
+            <input id="chatInput" maxlength="500" placeholder="Say something…" autocomplete="off" />
+            <button type="submit" aria-label="Send message">↑</button>
+          </form>
+        </section>
+
+        <div class="event-log" id="eventLog"></div>
+      </section>
+    </main>
+
+    <div class="overlay hidden" id="modalOverlay">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+        <div class="modal-kicker" id="modalKicker">TURN</div>
+        <h3 id="modalTitle">Your turn, Abhi</h3>
+        <p id="modalText">Choose one. Everyone in the room will see your choice.</p>
+        <div class="choice-grid" id="choiceGrid">
+          <button class="choice-card truth" data-mode="truth">
+            <span class="choice-icon">?</span>
+            <span class="choice-name">Truth</span>
+            <span class="choice-caption">Keep it real</span>
+          </button>
+          <button class="choice-card dare" data-mode="dare">
+            <span class="choice-icon">★</span>
+            <span class="choice-name">Dare</span>
+            <span class="choice-caption">Keep it fun</span>
+          </button>
+        </div>
+        <div class="modal-result hidden" id="modalResult">
+          <div class="result-tag" id="resultTag">TRUTH</div>
+          <div class="result-prompt" id="resultPrompt"></div>
+          <button class="primary-btn wide" id="doneBtn">Done — next player <span>→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+  <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});</script>
+</body>
+</html>

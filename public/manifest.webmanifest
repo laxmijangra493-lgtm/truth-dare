@@ -1,0 +1,12 @@
+{
+  "name": "Truth & Dare — Friends Edition",
+  "short_name": "Truth & Dare",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f4ec",
+  "theme_color": "#1f2b2d",
+  "description": "A private, mobile-first Truth & Dare room for friends.",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
