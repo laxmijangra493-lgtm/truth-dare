@@ -1,3 +1,5 @@
+<img width="2854" height="1646" alt="image" src="https://github.com/user-attachments/assets/986fc370-676d-47c2-88ec-0eb30bbccde8" />
+
 # Truth & Dare — Friends Edition
 
 A professional, mobile-first Truth or Dare web app for friends who are in different places.
